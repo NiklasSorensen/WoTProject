@@ -3,11 +3,13 @@ var express = require('express'),
     resources = require('./../resources/model');
 
 router.route('/').get(function (req, res, next){
-    res.send(resources.pi.sensors);
+    req.result = resources.pi.sensors;
+    next();
 });
 
 router.route('/bluetooth').get(function (req, res, next){
-    res.send(resources.pi.sensors.bluetooth);
+    req.result = resources.pi.sensors.bluetooth;
+    next();
 })
 
 module.exports = router;
