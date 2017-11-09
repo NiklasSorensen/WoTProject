@@ -1,0 +1,42 @@
+{
+    "pi":{
+        "name": "WoT Pi",
+        "description": "WoT-Connected Raspberry PI for the project",
+        "port": 8484,
+        "sensors": {
+            "bluetooth": {
+                "name": "Bluetooth Module",
+                "description": "The PI's bluetooth module is used in this case.",
+                "users": {
+                }
+            }
+        },
+        "actuators": {
+            "lights": {
+                "1": {
+                    "state": {
+                        "on": false,
+                        "bri": 254,
+                        "hue": 0,
+                        "sat": 0,
+                        "effect": "none",
+                        "xy": [
+                            0.435,
+                            0.405
+                        ],
+                        "alert": "none",
+                        "colormode": "hs",
+                        "reachable": true
+                    },
+                    "type": "Color light",
+                    "name": "Hue color light 1",
+            "modelid": "LLC010",
+            "manufacturername": "Philips",
+            "uniqueid": "00:17:88:01:00:10:aa:17-0b",
+            "swversion": "5.23.1.13452"
+            }
+            }
+        }
+    }
+}
+
