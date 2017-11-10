@@ -8,8 +8,7 @@ router.route('/').get(function (req, res, next){
 });
 
 router.route('/bluetooth').get(function (req, res, next){
-    req.result = resources.pi.sensors.bluetooth;
-    next();
+    res.send(resources.pi.sensors.bluetooth);
 })
 
 module.exports = router;
