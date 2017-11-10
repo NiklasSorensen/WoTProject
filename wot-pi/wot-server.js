@@ -8,4 +8,4 @@ var server = httpServer.listen(resources.pi.port, function () {
     resources.pi.port);
 });
 
-bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
+bluetoothPlugin.start({'simulate': false, 'frequency': 2000});

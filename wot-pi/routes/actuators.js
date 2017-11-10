@@ -1,6 +1,7 @@
 var express = require('express'),
 router = express.Router();
 resources = require('./../resources/model');
+var request = require('request');
 
 router.route('/').get(function (req, res, next){
     req.result = resources.pi.actuators;
@@ -8,12 +9,7 @@ router.route('/').get(function (req, res, next){
 });
 
 router.route('/lights').get(function (req, res, next){
-    req.result = resources.pi.actuators.lights;
-    next();
-});
-
-router.route('/lights/:id').get(function (req, res, next){
-  request('http://192.168.1.194/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/', function (error, response, body) {
+  request('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/', function (error, response, body) {
 if (!error && response.statusCode == 200) {
    var info = JSON.parse(body)
   // do more stuff
@@ -22,5 +18,32 @@ if (!error && response.statusCode == 200) {
 })
 });
 
+router.route('/lights/:id').get(function (req, res, next){
+  request('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/', function (error, response, body) {
+if (!error && response.statusCode == 200) {
+   var info = JSON.parse(body)
+  // do more stuff
+  res.send(info);
+}
+})
+});
+
+var onOffLight = function(url,state){
+  console.log(url);
+    request.put(
+      url, {
+        json: {
+        "on": state
+        }
+      },
+      function(error,response,body){
+        if(!error && response.statusCode == 200){
+
+        }
+      }
+    );
+}
+
+onOffLight('http://192.168.1.194/api/VpyPnLUByKbtA80Ad5PCSSudxxSEcrLuBNzJGiC9/lights/1/state',true);
 
 module.exports = router;
