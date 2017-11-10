@@ -26,7 +26,7 @@ module.exports = function (){
                 res.send(encode(req.result));
                 return;
             }
-            
+
             console.info('Defaulting to JSON representation!');
             res.send(req.result);
             return;
