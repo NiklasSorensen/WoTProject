@@ -28,7 +28,7 @@ if (!error && response.statusCode == 200) {
 })
 });
 
-var onOffLight = function(url,state){
+exports.onOffLight = function(url,state){
   console.log(url);
     request.put(
       url, {
@@ -42,8 +42,8 @@ var onOffLight = function(url,state){
         }
       }
     );
-}
+};
 
-onOffLight('http://192.168.1.194/api/VpyPnLUByKbtA80Ad5PCSSudxxSEcrLuBNzJGiC9/lights/1/state',true);
+
 
 module.exports = router;
