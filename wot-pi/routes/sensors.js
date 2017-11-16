@@ -16,7 +16,7 @@ router.route('/bluetooth/users').get(function (req, res, next){
 
    //var macUser = resources.pi.sensors.bluetooth;
 
-//   wotServer.test(req.body.macAddress);
+wotServer.test(req.body);
 
   console.info(req.body);
 
