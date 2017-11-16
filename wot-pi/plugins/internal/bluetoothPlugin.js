@@ -22,12 +22,28 @@ exports.stop = function (){
     }
     console.info('%s plugin stopped!', pluginName);
 };
+var userArray = [];
+exports.saveMacAndColorPref = function(userList){
+  userArray=[];
+//hent userlist fra resource fil
+  for(i=0;i<userList.length;i++){
+    var macAddress= userList[i].mac;
+    var timeNotConnected = 0;
+    var timeConnected = 0;
+    var isNearby = false;
+    newArray = [macAddress, 10000, timeConnected, timeNotConnected, isNearby];
+    //array[macAddress, color, TimeConnected, timeNotConnected, isNearby?]
+    userArray.push(newArray);
+  }
 
+  console.info(userArray);
+
+}
 function connectHardware() {
     var noble = require('noble');
 
 	var timer = 0;
-	var userArray = [];
+
 
 	var avoidTooManyCallsCounter = 0;
 
@@ -48,10 +64,10 @@ function connectHardware() {
 	//F2:26:04:14:4C:66 VivoActive
 
 	//zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA
-
-	saveMacAndColorPref('f22604144c66', 50000); //niklas ur
-	saveMacAndColorPref('fdb2b61222fe', 1000);	//christian ur
-	saveMacAndColorPref('2c3361b1cf48',30000); //christian iphone
+  //
+	// saveMacAndColorPref('f22604144c66', 50000); //niklas ur
+	// saveMacAndColorPref('fdb2b61222fe', 1000);	//christian ur
+	// saveMacAndColorPref('2c3361b1cf48',30000); //christian iphone
 
 	noble.on('discover', function(peripheral) {
 
@@ -104,15 +120,7 @@ function connectHardware() {
 
 	setInterval(intervalSetAddToTimer, 1000);
 
-	function saveMacAndColorPref(macAddress, color){
-		var timeNotConnected = 0;
-		var timeConnected = 0;
-		var isNearby = false;
-		newArray = [macAddress, color, timeConnected, timeNotConnected, isNearby];
-		//array[macAddress, color, TimeConnected, timeNotConnected, isNearby?]
-		userArray.push(newArray);
 
-	}
 
     console.info('Hardware %s sensor started!', pluginName);
 };
