@@ -7,8 +7,9 @@
             "bluetooth": {
                 "name": "Bluetooth Module",
                 "description": "The PI's bluetooth module is used in this case.",
-                "users": {
-                }
+                "users": [
+                ] 
+                
             }
         },
         "actuators": {
