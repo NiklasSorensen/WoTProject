@@ -18,12 +18,12 @@ router.route('/bluetooth/users').get(function (req, res, next){
 
 //   wotServer.test(req.body.macAddress);
 
-  console.info(req.body.macAddress);
+  console.info(req.body);
 
 
 
    console.info('post request done');
-      res.send(req.body.macAddress);
+      res.send(req.body);
   });
 
   router.route('/bluetooth/').get(function (req, res, next){
