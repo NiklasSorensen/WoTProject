@@ -27,8 +27,25 @@ onOffLight = function(url,state){
 };
 
 
+newUser = function(mac){
+
+  request.put(
+    'http://localhost:8484/pi/sensors/bluetooth/', {
+      json: {
+        "users": mac
+      }
+    },
+    function(error,response,body){
+      if(!error && response.statusCode == 200){
+        console.info("new user added");
+      }
+    }
+  );
+
+};
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
+<<<<<<< HEAD
 bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
 
 addUser = function(url, users){
@@ -50,3 +67,13 @@ addUser = function(url, users){
 var newUser = '{"macAddress":"00000000"}';
 
 addUser(resources.pi.sensors.bluetooth.users,newUser);
+=======
+var user = {
+  "mac":'124213'
+};
+newUser(user);
+
+
+//console.log(data);
+bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
+>>>>>>> origin/master

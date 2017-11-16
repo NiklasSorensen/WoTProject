@@ -58,15 +58,15 @@ function connectHardware() {
 		var macAddress = peripheral.uuid;
 		var rss = peripheral.rssi;
 
-		
+
 		for(i=0; i<userArray.length; i++){
 			if(macAddress == userArray[i][0]){		//Kontroller at den fundne macAddress er i vores user List
-		
+
 				console.log('found device: ', macAddress, ' ', ' ', rss);
-				if(avoidTooManyCallsCounter == 0){	
+				if(avoidTooManyCallsCounter == 0){
 						//TODO her skal skrives til serveren, at enheden er nearby
 						//AvoidTooManyCalls skal laves lidt om, så den gælder for alle enhederne
-						avoidTooManyCallsCounter++;	
+						avoidTooManyCallsCounter++;
 					}
 				if(userArray[i][4] == false){		//Er isNearby false?
 					userArray[i][4] = true;			//Set isNearby til true.
@@ -76,11 +76,11 @@ function connectHardware() {
 				if(userArray[i][4] == true){		//Er isNearby lig med true?
 					userArray[i][4] = false			//Set isNearby til false
 					//TODO skriv til serveren at enheden ikke er tilstede mere
-					
+
 				}
 			}
 		}
-		
+
 		console.log(userArray[0][0] + '     ' + userArray[0][1] + '     ' + userArray[0][2] + '      ' + userArray[0][3]);
 		console.log(userArray[1][0] + '     ' + userArray[1][1] + '     ' + userArray[1][2] + '      ' + userArray[1][3]);
 		console.log(userArray[2][0] + '     ' + userArray[2][1]+ '      ' + userArray[2][2] + '      ' + userArray[2][3]);
@@ -98,8 +98,8 @@ function connectHardware() {
 			}
 			userArray[i][3] = userArray[i][3] + 1;
 		}
-		
-		
+
+
 	}
 
 	setInterval(intervalSetAddToTimer, 1000);
@@ -111,7 +111,7 @@ function connectHardware() {
 		newArray = [macAddress, color, timeConnected, timeNotConnected, isNearby];
 		//array[macAddress, color, TimeConnected, timeNotConnected, isNearby?]
 		userArray.push(newArray);
-		
+
 	}
 
     console.info('Hardware %s sensor started!', pluginName);
@@ -119,8 +119,13 @@ function connectHardware() {
 
 function simulate() {
     interval = setInterval(function () {
+<<<<<<< HEAD
         //model.users = !model.users;
         //showUsers();
+=======
+        // model.users = !model.users;
+        // showUsers();
+>>>>>>> origin/master
     }, localParams.frequency);
     console.info('Simulated %s sensor started!', pluginName);
 };
