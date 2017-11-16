@@ -3,12 +3,18 @@ var httpServer = require('./servers/http'),
     actuators = require('./routes/actuators');
 var request = require('request');
 
+
 var bluetoothPlugin = require('./plugins/internal/bluetoothPlugin');
 
 var server = httpServer.listen(resources.pi.port, function () {
     console.info('Your WoT Pi is up and running on port %s',
     resources.pi.port);
 });
+
+
+
+//console.log(data);
+bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
 
 onOffLight = function(url,state){
   console.log(url);
@@ -26,27 +32,57 @@ onOffLight = function(url,state){
     );
 };
 
+var test = function(mac){
 
+<<<<<<< HEAD
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
 bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
+=======
+  var data= resources.pi.sensors.bluetooth;
+  data.users.push(mac);
+  console.info(data.users[0]);
 
-addUser = function(url, users){
+  bluetoothPlugin.saveMacAndColorPref(data.users);
+
+
+}
+
+
+>>>>>>> origin/master
+
+newUser = function(mac){
+//saveMacAndColorPref(mac);
+var data= resources.pi.sensors.bluetooth.users;
+console.info(data);
   request.post(
-    url, {
+    'http://localhost:8484/pi/sensors/bluetooth/', {
       json: {
-        users
+        "users": data.users.push(mac)
+
       }
     },
     function(error,response,body){
       if(!error && response.statusCode == 200){
-        console.log("things happened");
-
+        console.info("new user added");
       }
     }
   );
+
 };
+//onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
-var newUser = '{"macAddress":"00000000"}';
-
+<<<<<<< HEAD
 addUser(resources.pi.sensors.bluetooth.users,newUser);
+=======
+var user = {
+  "mac":124213
+};
+var user2 = {
+  "mac":1224213
+};
+ // test(user);
+ // test(user2);
+
+module.exports = test;
+>>>>>>> origin/master
