@@ -22,12 +22,15 @@ exports.stop = function (){
     }
     console.info('%s plugin stopped!', pluginName);
 };
+
+
 var userArray = [];
+
 exports.saveMacAndColorPref = function(userList){
   userArray=[];
 //hent userlist fra resource fil
   for(i=0;i<userList.length;i++){
-    var macAddress= userList[i].mac;
+    var macAddress= userList[i].macAddress;
     var timeNotConnected = 0;
     var timeConnected = 0;
     var isNearby = false;
@@ -119,17 +122,6 @@ function connectHardware() {
 	}
 
 	setInterval(intervalSetAddToTimer, 1000);
-
-
-	function saveMacAndColorPref(macAddress, color){
-		var timeNotConnected = 0;
-		var timeConnected = 0;
-		var isNearby = false;
-		newArray = [macAddress, color, timeConnected, timeNotConnected, isNearby];
-		//array[macAddress, color, TimeConnected, timeNotConnected, isNearby?]
-		userArray.push(newArray);
-		
-	}
 
 
     console.info('Hardware %s sensor started!', pluginName);
