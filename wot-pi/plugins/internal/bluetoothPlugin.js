@@ -1,5 +1,5 @@
 var resources = require('./../../resources/model');
-
+var request = require('request');
 var interval, sensor;
 var model = resources.pi.sensors.bluetooth;
 var pluginName = resources.pi.sensors.bluetooth.name;
@@ -84,6 +84,20 @@ function connectHardware() {
 				console.log('found device: ', macAddress, ' ', ' ', rss);
 				if(avoidTooManyCallsCounter == 0){	
 						//TODO her skal skrives til serveren, at enheden er nearby
+						request.put(
+							'https://dd6da80a.ngrok.io/isUserHome', {
+							  json: {
+							  state: true,
+							  user: userArray[i][0]
+							  }
+							},
+							function(error,response,body){
+							  if(!error && response.statusCode == 200){
+					  
+							  }
+							}
+						  );
+
 						//AvoidTooManyCalls skal laves lidt om, så den gælder for alle enhederne
 						avoidTooManyCallsCounter++;	
 					}
@@ -95,7 +109,19 @@ function connectHardware() {
 				if(userArray[i][4] == true){		//Er isNearby lig med true?
 					userArray[i][4] = false			//Set isNearby til false
 					//TODO skriv til serveren at enheden ikke er tilstede mere
-					
+					request.put(
+						'https://dd6da80a.ngrok.io/isUserHome', {
+						  json: {
+						  state: false,
+						  user: userArray[i][0]
+						  }
+						},
+						function(error,response,body){
+						  if(!error && response.statusCode == 200){
+				  
+						  }
+						}
+					  );
 				}
 			}
 		}
