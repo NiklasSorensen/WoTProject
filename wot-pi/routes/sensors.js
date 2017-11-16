@@ -1,7 +1,9 @@
 var express = require('express'),
     router = express.Router();
-    resources = require('./../resources/model'),
-    wotServer = require('./../wot-server');
+    resources = require('./../resources/model');
+    
+var wotServer = require('./../wot-server');
+
 
 router.route('/').get(function (req, res, next){
     req.result = resources.pi.sensors;
@@ -20,10 +22,10 @@ router.route('/bluetooth/users').get(function (req, res, next){
 }).post(function(req,res,next){
 
    //var macUser = resources.pi.sensors.bluetooth;
+    console.info(req.body);
+    wotServer.test(req.body);
 
-wotServer.test(req.body);
-
-  console.info(req.body);
+    
 
 
 
@@ -31,12 +33,8 @@ wotServer.test(req.body);
       res.send(req.body);
   });
 
-  router.route('/bluetooth/').get(function (req, res, next){
 
-      res.send(resources.pi.sensors.bluetooth);
 
-  })
 
 
 module.exports = router;
-//

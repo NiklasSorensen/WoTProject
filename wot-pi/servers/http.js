@@ -8,7 +8,7 @@ var express = require('express'),
 
 var app = express();
 
-//app.use(bodyParser.json);
+app.use(bodyParser.json());
 
 app.use(cors());
 
@@ -19,6 +19,6 @@ app.get('/pi', function (req, res){
     res.send('This is the WoT-Pi!');
 });
 
-//app.use(converter());
+app.use(converter());
 
 module.exports = app;

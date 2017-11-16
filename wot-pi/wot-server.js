@@ -32,13 +32,14 @@ onOffLight = function(url,state){
     );
 };
 
-var test = function(mac){
+exports.test = function(mac){
 
 
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
-bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
-
+//bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
+  console.info('printing the mac variable fomr wot-server, before being pushed');
+  console.info(mac);
   var data= resources.pi.sensors.bluetooth;
   data.users.push(mac);
   console.info(data.users[0]);
@@ -46,7 +47,7 @@ bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
   bluetoothPlugin.saveMacAndColorPref(data.users);
 
 
-}
+};
 
 
 newUser = function(mac){
@@ -71,7 +72,7 @@ console.info(data);
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
 
-addUser(resources.pi.sensors.bluetooth.users,newUser);
+//addUser(resources.pi.sensors.bluetooth.users,newUser);
 
 var user = {
   "mac":124213
@@ -82,5 +83,5 @@ var user2 = {
  // test(user);
  // test(user2);
 
-module.exports = test;
+//module.exports = test;
 
