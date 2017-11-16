@@ -120,7 +120,7 @@ function connectHardware() {
 
 	setInterval(intervalSetAddToTimer, 1000);
 
-<<<<<<< HEAD
+
 	function saveMacAndColorPref(macAddress, color){
 		var timeNotConnected = 0;
 		var timeConnected = 0;
@@ -130,27 +130,15 @@ function connectHardware() {
 		userArray.push(newArray);
 		
 	}
-=======
 
->>>>>>> origin/master
 
     console.info('Hardware %s sensor started!', pluginName);
 };
 
 function simulate() {
     interval = setInterval(function () {
-<<<<<<< HEAD
         //model.users = !model.users;
         //showUsers();
-=======
-
-        //model.users = !model.users;
-        //showUsers();
-
-        // model.users = !model.users;
-        // showUsers();
-
->>>>>>> origin/master
     }, localParams.frequency);
     console.info('Simulated %s sensor started!', pluginName);
 };

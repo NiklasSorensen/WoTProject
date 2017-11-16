@@ -34,11 +34,11 @@ onOffLight = function(url,state){
 
 var test = function(mac){
 
-<<<<<<< HEAD
+
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
 bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
-=======
+
   var data= resources.pi.sensors.bluetooth;
   data.users.push(mac);
   console.info(data.users[0]);
@@ -48,8 +48,6 @@ bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
 
 }
 
-
->>>>>>> origin/master
 
 newUser = function(mac){
 //saveMacAndColorPref(mac);
@@ -72,9 +70,9 @@ console.info(data);
 };
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
-<<<<<<< HEAD
+
 addUser(resources.pi.sensors.bluetooth.users,newUser);
-=======
+
 var user = {
   "mac":124213
 };
@@ -85,4 +83,4 @@ var user2 = {
  // test(user2);
 
 module.exports = test;
->>>>>>> origin/master
+

@@ -8,11 +8,11 @@ router.route('/').get(function (req, res, next){
     next();
 });
 
-<<<<<<< HEAD
+
 router.route('/bluetooth').get(function (req, res, next){
     res.send(resources.pi.sensors.bluetooth);
 })
-=======
+
 router.route('/bluetooth/users').get(function (req, res, next){
 
     res.send(resources.pi.sensors.bluetooth.users);
@@ -36,7 +36,7 @@ wotServer.test(req.body);
       res.send(resources.pi.sensors.bluetooth);
 
   })
->>>>>>> origin/master
+
 
 module.exports = router;
 //
