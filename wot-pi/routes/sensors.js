@@ -14,14 +14,16 @@ router.route('/bluetooth/users').get(function (req, res, next){
 
 }).post(function(req,res,next){
 
-   var macUser = resources.pi.sensors.bluetooth;
-   macUser.users= req.body.macAddress;
-   wotServer.test(macUser.users);
+   //var macUser = resources.pi.sensors.bluetooth;
+
+   wotServer.test(req.body.macAddress);
+
+      console.info(req.body.macAddress);
 
 
 
    console.info('post request done');
-      res.send(macUser.users);
+      res.send(req.body.macAddress);
   });
 
   router.route('/bluetooth/').get(function (req, res, next){
