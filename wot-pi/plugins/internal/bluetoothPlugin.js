@@ -119,8 +119,8 @@ function connectHardware() {
 
 function simulate() {
     interval = setInterval(function () {
-        model.users = !model.users;
-        showUsers();
+        //model.users = !model.users;
+        //showUsers();
     }, localParams.frequency);
     console.info('Simulated %s sensor started!', pluginName);
 };
