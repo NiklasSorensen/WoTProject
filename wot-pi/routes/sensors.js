@@ -17,6 +17,7 @@ router.route('/bluetooth').get(function (req, res, next){
 router.route('/bluetooth/users').get(function (req, res, next){
     res.send(resources.pi.sensors.bluetooth.users);
 }).post(function(req,res,next){
+    fs.writeFileSync();
     internalComms.newUser(req.body);
     console.info('post request done');
     res.send(req.body);

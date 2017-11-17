@@ -16,3 +16,21 @@ exports.isHome = function(state, macAddress){
         }
       );
 };
+/*
+exports.getUsers = function(){
+    console.log('getting users');
+    request.get(
+        'https://dd6da80a.ngrok.io', {
+        },
+        function(error,responce,body){
+            if(!error && response.statusCode == 200){
+                
+                for(i = 0; i < response.body.length; i++){
+                    response.body;
+                }
+            }
+        }
+
+    );
+}
+*/

@@ -5,6 +5,9 @@ var resources = require('./../../resources/model'),
 	localParams = {'simulate': false, 'frequency': 2000},
 	communication = require('./../../communication/request.js');
 
+
+var timeToWaitBeforeFalse = 5;
+
 exports.start = function (params) {
     localParams = params;
     if(localParams.simulate){
@@ -80,7 +83,7 @@ function connectHardware() {
 					communication.isHome(userArray[i][4], userArray[i][0]);
 				}
 				userArray[i][3] = 0;				//Set not timeNotConnected til 0 "reset, da man nu har hørt fra dem"
-			}else if(userArray[i][3] >= 30){		//Er det over 30 sekunder siden vi har hørt fra denne enhed?
+			}else if(userArray[i][3] >= timeToWaitBeforeFalse){		//Er det over 30 sekunder siden vi har hørt fra denne enhed?
 				if(userArray[i][4] == true){		//Er isNearby lig med true?
 					userArray[i][4] = false			//Set isNearby til false
 					//TODO skriv til serveren at enheden ikke er tilstede mere
