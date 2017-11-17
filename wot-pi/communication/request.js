@@ -26,11 +26,11 @@ exports.getUsers = function(){
         function(error,response,body){
             if(!error && response.statusCode == 200){
                 var array;
-                console.log(response.body);
+                //console.log(response.body);
                 console.log(typeof(response.body));
-                console.log(this.response.body[0]);
+                //console.log(this.response.body[0]);
                 var resp = JSON.parse(response.body);
-                console.log(resp[0]);
+                console.log(resp.macAddress[0]);
                 console.log(typeof(resp));
                 for(i=0; i < resp.macAddress.lenght; i++){
                     array.push(resp.macAddress[i]);
