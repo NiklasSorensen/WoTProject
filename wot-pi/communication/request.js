@@ -25,13 +25,17 @@ exports.getUsers = function(){
         },
         function(error,response,body){
             if(!error && response.statusCode == 200){
+                var array;
                 console.log(response.body);
                 console.log(typeof(response.body));
                 console.log(this.response.body[0]);
                 var resp = JSON.parse(response.body);
                 console.log(resp);
-
-                internalComms.newUser(resp);
+                for(i=0; i < resp.lenght; i++){
+                    array.push(resp[i]);
+                }
+                console.log(array);
+                internalComms.newUser(array);
 
             }
         }
