@@ -12,7 +12,7 @@ var server = httpServer.listen(resources.pi.port, function () {
 
 
 //Når det køres på PI, skal simulate være sat til false
-bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
+bluetoothPlugin.start({'simulate': false, 'frequency': 2000});
 
 onOffLight = function(url,state){
   console.log(url);
