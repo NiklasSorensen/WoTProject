@@ -28,8 +28,10 @@ exports.getUsers = function(){
                 console.log(response.body);
                 console.log(typeof(response.body));
                 console.log(this.response.body[0]);
+                var resp = JSON.parse(response.body);
+                console.log(resp);
 
-                internalComms.newUser(response.body);
+                internalComms.newUser(resp);
 
             }
         }
