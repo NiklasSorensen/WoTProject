@@ -6,8 +6,10 @@ exports.newUser = function(mac){
     console.info('printing the mac variable fomr wot-server, before being pushed');
     console.info(mac);
     var data= resources.pi.sensors.bluetooth;
-    data.users.push(mac);
-    
+    for(i=0; i < mac.length; i++){
+        data.users.push(mac);
+    }
+      
     bluetoothPlugin.saveMacAndColorPref(data.users);
     
 };
