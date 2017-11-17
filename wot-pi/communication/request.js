@@ -39,7 +39,7 @@ exports.getUsers = function(){
                 var obj = {
                     macAddress: array
                 }
-                internalComms.newUser(array);
+                internalComms.newUser(obj);
 
             }
         }
