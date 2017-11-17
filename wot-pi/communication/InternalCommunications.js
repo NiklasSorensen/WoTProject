@@ -5,10 +5,11 @@ exports.newUser = function(mac){
     
     console.info('printing the mac variable fomr wot-server, before being pushed');
     console.info(mac);
+    var array = mac.macAddress
     var data= resources.pi.sensors.bluetooth;
-    for(i=0; i < mac.length; i++){
-        data.users.push(mac[i]);
-        console.log(mac[i]);
+    for(i=0; i < array.length; i++){
+        data.users.push(array[i]);
+        console.log(array[i]);
     }
       
     bluetoothPlugin.saveMacAndColorPref(data.users);
