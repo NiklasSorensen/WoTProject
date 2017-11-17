@@ -32,7 +32,7 @@ exports.getUsers = function(){
                 var resp = JSON.parse(response.body);
                 console.log(resp.macAddress[0]);
                 console.log(typeof(resp));
-                for(i=0; i < resp.macAddress.lenght; i++){
+                for(i=0; i < resp.macAddress.length; i++){
                     array.push(resp.macAddress[i]);
                 }
                 console.log(array);
