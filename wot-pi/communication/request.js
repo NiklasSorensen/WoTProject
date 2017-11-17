@@ -17,14 +17,15 @@ exports.isHome = function(state, macAddress){
         }
       );
 };
-/*
+
 exports.getUsers = function(){
     console.log('getting users');
     request.get(
-        'https://dd6da80a.ngrok.io', {
+        'https://dd6da80a.ngrok.io/bluetoothdata', {
         },
         function(error,responce,body){
             if(!error && response.statusCode == 200){
+                console.log(response.body);
                 internalComms.newUser(response.body);
 
             }
@@ -32,4 +33,3 @@ exports.getUsers = function(){
 
     );
 }
-*/
