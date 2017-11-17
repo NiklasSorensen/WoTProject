@@ -23,7 +23,7 @@ exports.getUsers = function(){
     request.get(
         'https://dd6da80a.ngrok.io/bluetoothdata', {
         },
-        function(error,responce,body){
+        function(error,response,body){
             if(!error && response.statusCode == 200){
                 console.log(response.body);
                 internalComms.newUser(response.body);
