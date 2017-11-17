@@ -82,27 +82,21 @@ function connectHardware() {
 			if(macAddress == userArray[i][0]){		//Kontroller at den fundne macAddress er i vores user List
 		
 				console.log('found device: ', macAddress, ' ', ' ', rss);
-				if(avoidTooManyCallsCounter == 0){	
-						//TODO her skal skrives til serveren, at enheden er nearby
-						request.put(
-							'https://dd6da80a.ngrok.io/isUserHome', {
-							  json: {
-							  state: true,
-							  user: userArray[i][0]
-							  }
-							},
-							function(error,response,body){
-							  if(!error && response.statusCode == 200){
-					  
-							  }
-							}
-						  );
-
-						//AvoidTooManyCalls skal laves lidt om, så den gælder for alle enhederne
-						avoidTooManyCallsCounter++;	
-					}
 				if(userArray[i][4] == false){		//Er isNearby false?
 					userArray[i][4] = true;			//Set isNearby til true.
+					request.put(
+						'https://dd6da80a.ngrok.io/isUserHome', {
+						  json: {
+						  state: true,
+						  user: userArray[i][0]
+						  }
+						},
+						function(error,response,body){
+						  if(!error && response.statusCode == 200){
+				  
+						  }
+						}
+					  );
 				}
 				userArray[i][3] = 0;				//Set not timeNotConnected til 0 "reset, da man nu har hørt fra dem"
 			}else if(userArray[i][3] >= 30){		//Er det over 30 sekunder siden vi har hørt fra denne enhed?
