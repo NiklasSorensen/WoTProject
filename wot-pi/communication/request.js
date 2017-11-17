@@ -27,7 +27,7 @@ exports.getUsers = function(){
             if(!error && response.statusCode == 200){
                 console.log(response.body);
                 
-                console.log(response.body[0]);
+                console.log(this.response.body[0]);
 
                 internalComms.newUser(response.body);
 
