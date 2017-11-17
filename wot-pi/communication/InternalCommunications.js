@@ -5,7 +5,7 @@ exports.newUser = function(mac){
     
     console.info('printing the mac variable fomr wot-server, before being pushed');
     console.info(mac);
-    var array = mac.macAddress;
+    var array = mac.macAddress[0];
     var data= resources.pi.sensors.bluetooth;
     for(i=0; i < array.length; i++){
         data.users.push(array[i]);
