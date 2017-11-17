@@ -36,7 +36,7 @@ exports.saveMacAndColorPref = function(userList){
   userArray=[];
 //hent userlist fra resource fil
   for(i=0;i<userList.length;i++){
-    var macAddress= userList[i].macAddress;
+    var macAddress= userList[i];
     var timeNotConnected = 0;
     var timeConnected = 0;
     var isNearby = false;
