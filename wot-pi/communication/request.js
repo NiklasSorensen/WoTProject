@@ -30,7 +30,8 @@ exports.getUsers = function(){
                 console.log(typeof(response.body));
                 console.log(this.response.body[0]);
                 var resp = JSON.parse(response.body);
-                console.log(resp);
+                console.log(resp[0]);
+                console.log(typeof(resp));
                 for(i=0; i < resp.lenght; i++){
                     array.push(resp[i]);
                 }
