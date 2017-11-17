@@ -1,5 +1,5 @@
-var resources = require('./resources/model'),
-    bluetoothPlugin = require('./plugins/internal/bluetoothPlugin');
+var resources = require('./../resources/model'),
+    bluetoothPlugin = require('./../plugins/internal/bluetoothPlugin');
 
 exports.newUser = function(mac){
     
