@@ -15,6 +15,8 @@ var server = httpServer.listen(resources.pi.port, function () {
 bluetoothPlugin.start({'simulate': false, 'frequency': 2000});
 
 
+var listOfUsers = ['f22604144c66'];
+bluetoothPlugin.saveMacAndColorPref(listOfUsers);
 
 //onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
 
