@@ -29,6 +29,8 @@ exports.stop = function (){
 
 var userArray = [];
 
+var listOfUsers = [f22604144c66];
+saveMacAndColorPref(listOfUsers);
 //Gem en brugerliste, med macAddress
 exports.saveMacAndColorPref = function(userList){
   userArray=[];
