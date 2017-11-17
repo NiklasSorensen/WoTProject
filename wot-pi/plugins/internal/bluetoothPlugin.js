@@ -6,7 +6,7 @@ var resources = require('./../../resources/model'),
 	communication = require('./../../communication/request.js');
 
 
-var timeToWaitBeforeFalse = 5;
+var timeToWaitBeforeFalse = 30;
 
 exports.start = function (params) {
     localParams = params;
@@ -76,8 +76,9 @@ function connectHardware() {
 		for(i=0; i<userArray.length; i++){
 			if(macAddress == userArray[i][0]){		//Kontroller at den fundne macAddress er i vores user List
 		
-				console.log('found device: ', macAddress, ' ', ' ', rss);
+				
 				if(userArray[i][4] == false){		//Er isNearby false?
+					console.log('found device: ', macAddress, ' ', ' ', rss);
 					userArray[i][4] = true;			//Set isNearby til true.
 					console.log('just before sending communication');
 					communication.isHome(userArray[i][4], userArray[i][0]);

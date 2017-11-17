@@ -1,4 +1,5 @@
 var request = require('request');
+    internalComms = require('./InternalCommunications.js');
 
 exports.isHome = function(state, macAddress){
     console.log('sending state to server');
@@ -24,10 +25,8 @@ exports.getUsers = function(){
         },
         function(error,responce,body){
             if(!error && response.statusCode == 200){
-                
-                for(i = 0; i < response.body.length; i++){
-                    response.body;
-                }
+                internalComms.newUser(response.body);
+
             }
         }
 
