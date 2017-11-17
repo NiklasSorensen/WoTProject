@@ -25,7 +25,7 @@ exports.getUsers = function(){
         },
         function(error,response,body){
             if(!error && response.statusCode == 200){
-                var array;
+                var array = [];
                 //console.log(response.body);
                 console.log(typeof(response.body));
                 //console.log(this.response.body[0]);
