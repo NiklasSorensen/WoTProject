@@ -1,5 +1,6 @@
 var resources = require('./../resources/model'),
-    bluetoothPlugin = require('./../plugins/internal/bluetoothPlugin');
+    bluetoothPlugin = require('./../plugins/internal/bluetoothPlugin'),
+    request = require('request');
 
 exports.newUser = function(mac){
     
@@ -17,12 +18,13 @@ exports.newUser = function(mac){
 };
 
 
-exports.onOffLight = function(url,state){
+exports.onOffLight = function(url,state,val){
     console.log(url);
         request.put(
         url, {
             json: {
-            "on": state
+            "on": state,
+            "hue": val
             }
         },
         function(error,response,body){

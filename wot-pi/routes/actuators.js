@@ -28,6 +28,7 @@ if (!error && response.statusCode == 200) {
 })
 });
 
+/*
 exports.onOffLight = function(url,state,val){
   console.log(url);
     request.put(
@@ -44,7 +45,7 @@ exports.onOffLight = function(url,state,val){
       }
     );
 };
-
+*/
 
 
 module.exports = router;

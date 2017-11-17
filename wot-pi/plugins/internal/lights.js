@@ -26,17 +26,12 @@ exports.stop = function(){
 };
 
 
-function switchOnOff(state, colorVal) {
+exports.switchOnOff = function(state, colorVal) {
     if(!localParams.simulate){
         internalComms.onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state', state, colorVal);
     }
 };
 
-function changeColor(value){
-    if(!localParams.simulate){
-        
-    }
-}
 
 function connectHardware() {
     //har skal funktionaliteten være
