@@ -1,9 +1,9 @@
-var resources = require('./../../resources/model');
-var request = require('request');
-var interval, sensor;
-var model = resources.pi.sensors.bluetooth;
-var pluginName = resources.pi.sensors.bluetooth.name;
-var localParams = {'simulate': false, 'frequency': 2000};
+var resources = require('./../../resources/model'),
+	interval, sensor,
+ 	model = resources.pi.sensors.bluetooth,
+ 	pluginName = resources.pi.sensors.bluetooth.name,
+	localParams = {'simulate': false, 'frequency': 2000},
+	communication = require('./../../communication/request.js');
 
 exports.start = function (params) {
     localParams = params;
@@ -26,6 +26,7 @@ exports.stop = function (){
 
 var userArray = [];
 
+//Gem en brugerliste, med macAddress
 exports.saveMacAndColorPref = function(userList){
   userArray=[];
 //hent userlist fra resource fil
@@ -34,8 +35,7 @@ exports.saveMacAndColorPref = function(userList){
     var timeNotConnected = 0;
     var timeConnected = 0;
     var isNearby = false;
-    newArray = [macAddress, 10000, timeConnected, timeNotConnected, isNearby];
-    //array[macAddress, color, TimeConnected, timeNotConnected, isNearby?]
+    newArray = [macAddress, 10000, timeConnected, timeNotConnected, isNearby];  //array[macAddress, color, TimeConnected, timeNotConnected, isNearby?]
     userArray.push(newArray);
   }
 
@@ -45,12 +45,7 @@ exports.saveMacAndColorPref = function(userList){
 function connectHardware() {
     var noble = require('noble');
 
-	var timer = 0;
-
-
-	var avoidTooManyCallsCounter = 0;
-
-	console.log('app runs');
+	console.log('bluetooth plugin runs');
 
 	noble.on('stateChange', function(state) {
 		if (state === 'poweredOn'){
@@ -67,10 +62,7 @@ function connectHardware() {
 	//F2:26:04:14:4C:66 VivoActive
 
 	//zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA
-  //
-	// saveMacAndColorPref('f22604144c66', 50000); //niklas ur
-	// saveMacAndColorPref('fdb2b61222fe', 1000);	//christian ur
-	// saveMacAndColorPref('2c3361b1cf48',30000); //christian iphone
+
 
 	noble.on('discover', function(peripheral) {
 
@@ -84,38 +76,14 @@ function connectHardware() {
 				console.log('found device: ', macAddress, ' ', ' ', rss);
 				if(userArray[i][4] == false){		//Er isNearby false?
 					userArray[i][4] = true;			//Set isNearby til true.
-					request.put(
-						'https://dd6da80a.ngrok.io/isUserHome', {
-						  json: {
-						  state: true,
-						  user: userArray[i][0]
-						  }
-						},
-						function(error,response,body){
-						  if(!error && response.statusCode == 200){
-				  
-						  }
-						}
-					  );
+					communication.isHome(userArray[i][4], userArray[i][0]);
 				}
 				userArray[i][3] = 0;				//Set not timeNotConnected til 0 "reset, da man nu har hørt fra dem"
 			}else if(userArray[i][3] >= 30){		//Er det over 30 sekunder siden vi har hørt fra denne enhed?
 				if(userArray[i][4] == true){		//Er isNearby lig med true?
 					userArray[i][4] = false			//Set isNearby til false
 					//TODO skriv til serveren at enheden ikke er tilstede mere
-					request.put(
-						'https://dd6da80a.ngrok.io/isUserHome', {
-						  json: {
-						  state: false,
-						  user: userArray[i][0]
-						  }
-						},
-						function(error,response,body){
-						  if(!error && response.statusCode == 200){
-				  
-						  }
-						}
-					  );
+					communication.isHome(userArray[i][4], userArray[i][0]);
 				}
 			}
 		}
@@ -126,12 +94,10 @@ function connectHardware() {
 	});
 
 	function intervalSetAddToTimer(){
-		timer++;
 		//console.log('has been not been heard from index for: ' + timer + ' seconds');
 		for(i=0; i<userArray.length; i++){
 			if(userArray[i][4] == false){
 				userArray[i][2] = 0;
-				avoidTooManyCallsCounter = 0;
 			} else if(userArray[i][4] == true){
 				userArray[i][2] = userArray[i][2] + 1;
 			}
@@ -149,12 +115,7 @@ function connectHardware() {
 
 function simulate() {
     interval = setInterval(function () {
-        //model.users = !model.users;
-        //showUsers();
+
     }, localParams.frequency);
     console.info('Simulated %s sensor started!', pluginName);
-};
-
-function showUsers(){
-    console.info(model.users ? 'there is someone!' : "not anymore!");
 };
