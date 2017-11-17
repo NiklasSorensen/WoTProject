@@ -7,7 +7,8 @@ exports.newUser = function(mac){
     console.info(mac);
     var data= resources.pi.sensors.bluetooth;
     for(i=0; i < mac.length; i++){
-        data.users.push(mac);
+        data.users.push(mac[i]);
+        console.log(mac[i]);
     }
       
     bluetoothPlugin.saveMacAndColorPref(data.users);
