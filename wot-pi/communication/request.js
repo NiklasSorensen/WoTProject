@@ -32,8 +32,8 @@ exports.getUsers = function(){
                 var resp = JSON.parse(response.body);
                 console.log(resp[0]);
                 console.log(typeof(resp));
-                for(i=0; i < resp.lenght; i++){
-                    array.push(resp[i]);
+                for(i=0; i < resp.macAddress.lenght; i++){
+                    array.push(resp.macAddress[i]);
                 }
                 console.log(array);
                 internalComms.newUser(array);
