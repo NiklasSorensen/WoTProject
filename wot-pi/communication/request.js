@@ -36,6 +36,9 @@ exports.getUsers = function(){
                     array.push(resp.macAddress[i]);
                 }
                 console.log(array);
+                var obj = {
+                    macAddress: array
+                }
                 internalComms.newUser(array);
 
             }
