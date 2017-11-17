@@ -17,7 +17,7 @@ exports.newUser = function(mac){
 };
 
 
-onOffLight = function(url,state){
+exports.onOffLight = function(url,state){
     console.log(url);
         request.put(
         url, {

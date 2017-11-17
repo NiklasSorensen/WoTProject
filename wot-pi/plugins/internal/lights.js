@@ -4,6 +4,7 @@ var interval, sensor;
 var model = resources.pi.actuators.lights;
 var pluginName = resources.pi.actuators.lights.modelid;
 var localParams = {'simulate': false, 'frequency': 2000};
+var internalComms = require('./../../communication/InternalCommunications.js');
 
 exports.start = function (params) {
     localParams = params;
@@ -23,25 +24,19 @@ exports.stop = function(){
     }
     console.info('%s plugin stopped!', pluginName);
 };
-/*
-function observe(what){
-    Object.observe(what, function (changes){
-        console.info('Change detected by plugin for %s...', pluginName);
 
-        //Listening on model, for changes, then calls switch on off
-        switchOnOff(model.value);
-    });
-}; */
 
-function switchOnOff(value) {
+function switchOnOff(state, colorVal) {
     if(!localParams.simulate){
-
-        /*  // Her laver den
-        actuator.write(value === true ? 1 : 0, function (){
-            console.info('Changed value of %s to %s', pluginName, value);
-        });*/
+        internalComms.onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state', state, colorVal);
     }
 };
+
+function changeColor(value){
+    if(!localParams.simulate){
+        
+    }
+}
 
 function connectHardware() {
     //har skal funktionaliteten være

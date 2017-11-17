@@ -28,12 +28,13 @@ if (!error && response.statusCode == 200) {
 })
 });
 
-exports.onOffLight = function(url,state){
+exports.onOffLight = function(url,state,val){
   console.log(url);
     request.put(
       url, {
         json: {
-        "on": state
+        "on": state,
+        "hue": val
         }
       },
       function(error,response,body){
