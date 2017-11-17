@@ -1,6 +1,7 @@
 var request = require('request');
 
 exports.isHome = function(state, macAddress){
+    console.log('sending state to server');
     request.put(
         'https://dd6da80a.ngrok.io/isUserHome', {
           json: {

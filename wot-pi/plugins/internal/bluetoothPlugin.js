@@ -76,6 +76,7 @@ function connectHardware() {
 				console.log('found device: ', macAddress, ' ', ' ', rss);
 				if(userArray[i][4] == false){		//Er isNearby false?
 					userArray[i][4] = true;			//Set isNearby til true.
+					console.log('just before sending communication');
 					communication.isHome(userArray[i][4], userArray[i][0]);
 				}
 				userArray[i][3] = 0;				//Set not timeNotConnected til 0 "reset, da man nu har hørt fra dem"
