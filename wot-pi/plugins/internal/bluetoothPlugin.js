@@ -126,9 +126,9 @@ function connectHardware() {
 			}
 		}
 		
-		console.log(userArray[0][0] + '     ' + userArray[0][1] + '     ' + userArray[0][2] + '      ' + userArray[0][3]);
+		/*console.log(userArray[0][0] + '     ' + userArray[0][1] + '     ' + userArray[0][2] + '      ' + userArray[0][3]);
 		console.log(userArray[1][0] + '     ' + userArray[1][1] + '     ' + userArray[1][2] + '      ' + userArray[1][3]);
-		console.log(userArray[2][0] + '     ' + userArray[2][1]+ '      ' + userArray[2][2] + '      ' + userArray[2][3]);
+		console.log(userArray[2][0] + '     ' + userArray[2][1]+ '      ' + userArray[2][2] + '      ' + userArray[2][3]);*/
 	});
 
 	function intervalSetAddToTimer(){
