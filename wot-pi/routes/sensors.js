@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     resources = require('./../resources/model'),
-    wotServer = require('./../wot-server');
+    internalComms = require('./../communication/InternalCommunications.js');
 
 
 router.route('/').get(function (req, res, next){
@@ -17,7 +17,7 @@ router.route('/bluetooth').get(function (req, res, next){
 router.route('/bluetooth/users').get(function (req, res, next){
     res.send(resources.pi.sensors.bluetooth.users);
 }).post(function(req,res,next){
-    wotServer.newUser(req.body);
+    internalComms.newUser(req.body);
     console.info('post request done');
     res.send(req.body);
 });
