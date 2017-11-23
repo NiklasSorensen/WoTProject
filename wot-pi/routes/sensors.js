@@ -11,16 +11,19 @@ router.route('/').get(function (req, res, next){
 
 
 router.route('/bluetooth').get(function (req, res, next){
-    res.send(resources.pi.sensors.bluetooth);
+    req.result = resources.pi.sensors.bluetooth;
+    next();
 })
 
 router.route('/bluetooth/users').get(function (req, res, next){
-    res.send(resources.pi.sensors.bluetooth.users);
+    req.result = resources.pi.sensors.bluetooth.users;
+    next();
 }).post(function(req,res,next){
     console.info('post request recieved');
     internalComms.newUser(req.body);
     console.info('post request done');
-    res.send(req.body);
+    req.result = req.body;
+    next();
 });
 
 module.exports = router;

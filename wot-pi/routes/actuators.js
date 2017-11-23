@@ -10,52 +10,24 @@ router.route('/').get(function (req, res, next){
 });
 
 router.route('/lights').get(function (req, res, next){
-  request('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/', function (error, response, body) {
-if (!error && response.statusCode == 200) {
-   var info = JSON.parse(body)
-  // do more stuff
-  res.send(info);
-}
-})
+  req.result = resources.pi.actuators.lights
+  next();
 });
 
 router.route('/lights/:id').get(function (req, res, next){
-  request('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/', function (error, response, body) {
-if (!error && response.statusCode == 200) {
-   var info = JSON.parse(body)
-  // do more stuff
-  res.send(info);
-}
-})
+  req.result = resources.pi.actuators.lights[req.params.id];
+  next();
 });
 
 router.route('/lights/:id/state').get(function (req, res, next){
-  res.send(model.lights[req.params.id].state);
+  req.result = resources.pi.actuators.lights[req.params.id].state;
+  next();
 }).put(function (req, res, next){
   var myLed = model.lights[req.params.id].state;
   myLed.on = req.body.on;
-  console.info('works');
-  res.send(myLed.on);
+  console.info('changing light state on/off');
+  req.result = myLed.on;
+  next();
 });
-
-/*
-exports.onOffLight = function(url,state,val){
-  console.log(url);
-    request.put(
-      url, {
-        json: {
-        "on": state,
-        "hue": val
-        }
-      },
-      function(error,response,body){
-        if(!error && response.statusCode == 200){
-
-        }
-      }
-    );
-};
-*/
-
 
 module.exports = router;
