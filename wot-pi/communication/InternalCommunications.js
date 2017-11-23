@@ -16,21 +16,3 @@ exports.newUser = function(mac){
     bluetoothPlugin.saveMacAndColorPref(data.users);
     
 };
-
-
-exports.onOffLight = function(url,state,val){
-    console.log(url);
-        request.put(
-        url, {
-            json: {
-            "on": state,
-            "hue": val
-            }
-        },
-        function(error,response,body){
-            if(!error && response.statusCode == 200){
-    
-            }
-        }
-        );
-};

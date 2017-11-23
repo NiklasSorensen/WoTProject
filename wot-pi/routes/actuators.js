@@ -2,6 +2,7 @@ var express = require('express'),
 router = express.Router();
 resources = require('./../resources/model');
 var request = require('request');
+var model = resources.pi.actuators;
 
 router.route('/').get(function (req, res, next){
     req.result = resources.pi.actuators;
@@ -26,6 +27,15 @@ if (!error && response.statusCode == 200) {
   res.send(info);
 }
 })
+});
+
+router.route('/lights/:id/state').get(function (req, res, next){
+  res.send(model.lights[req.params.id].state);
+}).put(function (req, res, next){
+  var myLed = model.lights[req.params.id].state;
+  myLed.on = req.body.on;
+  console.info('works');
+  res.send(myLed.on);
 });
 
 /*
