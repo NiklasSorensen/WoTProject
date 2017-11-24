@@ -1,28 +1,35 @@
-
 var express = require('express'),
-router = express.Router();
-resources = require('./../resources/model');
-var request = require('request');
-var model = resources.pi.actuators;
+    router = express.Router();
+    resources = require('./../resources/model'),
+    request = require('request'),
+    model = resources.pi.actuators,
+    utils = require('./../utils/utils.js');
 
 router.route('/').get(function (req, res, next){
-    req.result = resources.pi.actuators;
+    req.result = model;
     next();
 });
 
 router.route('/lights').get(function (req, res, next){
-  req.result = resources.pi.actuators.lights
+  req.result = model.lights
   next();
 });
 
 
 router.route('/lights/:id').get(function (req, res, next){
-  req.result = resources.pi.actuators.lights[req.params.id];
+  req.result = model.lights[req.params.id];
   next();
 });
 
-router.route('/lights/:id/state').get(function (req, res, next){
-  req.result = resources.pi.actuators.lights[req.params.id].state;
+//#region Functions  
+router.route('/lights/:id/functions').get(function(req, res, next){
+  //TODO return med en liste af funktioner med endpoints
+  req.result = model.lights[req.params.id].functions;
+  next();
+});
+
+router.route('/lights/:id/functions/onoff').get(function (req, res, next){
+  req.result = model.lights[req.params.id].state;
   next();
 }).put(function (req, res, next){
   var myLed = model.lights[req.params.id].state;
@@ -33,15 +40,23 @@ router.route('/lights/:id/state').get(function (req, res, next){
   next();
 });
 
+router.route('/lights/:id/functions/changeColor').get(function(req, res, next){
+  req.result = model.lights[req.params.id].functions.changeColor;
+  next();
+}).put(function(req, res, next){
+  hex = req.body.hex;
+  var color;
+  var xy = model.lights[req.params.id].state;
+  color = utils.rgbToXy(hex);
 
-router.route('/lights/:id/functions').get(function(req, res, next){
-  //TODO return med en liste af funktioner med endpoints
-  req.result = resources.pi.actuators.lights[req.params.id].functions;
+  xy.xy = color;
+
+  req.result = xy.xy;
   next();
 });
 
 router.route('/lights/:id/functions/blink').get(function (req, res, next){
-  req.result = resources.pi.actuators.lights[req.params.id].functions.blink;
+  req.result = model.lights[req.params.id].functions.blink;
   next();
 }).put(function (req, res, next){
   number = req.body.number;
@@ -69,7 +84,7 @@ router.route('/lights/:id/functions/blink').get(function (req, res, next){
 });
 
 router.route('/lights/:id/functions/adjustBrightness').get(function(req, res, next){
-  req.result = resources.pi.actuators.lights[req.params.id].functions.adjustBrightness;
+  req.result = model.lights[req.params.id].functions.adjustBrightness;
   next();
 }).put(function(req, res, next){
   var myLedBright = model.lights[req.params.id].state;
@@ -81,4 +96,6 @@ router.route('/lights/:id/functions/adjustBrightness').get(function(req, res, ne
   //req.result = myLedBright.bri;
   //next();
 });
+//#endregion
+
 module.exports = router;

@@ -12,8 +12,9 @@ var url = 'http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lig
 
 exports.start = function (params) {
     localParams = params;
-    watchjs.watch(model[1].state, "on", function(){switchOnOff(model[1].state.on,10000);});
+    watchjs.watch(model[1].state, ["on","xy"], function(){switchOnOff(model[1].state.on,model[1].state.xy);});
     watchjs.watch(model[1].state, "bri", function(){adjustBrightness(model[1].state.bri);});
+    //watchjs.watch(model[1].state, "xy", function(){switchOnOff(model[1].state.on,model[1].state.xy);});
     if(localParams.simulate){
         simulate();
     }else{
@@ -31,14 +32,14 @@ exports.stop = function(){
 };
 
 
-switchOnOff = function(state, colorVal) {
+switchOnOff = function(state, xy) {
     if(!localParams.simulate){
         console.log(url);
         request.put(
         url, {
             json: {
             "on": state,
-            "hue": colorVal
+            "xy": xy
             }
         },
         function(error,response,body){
@@ -76,3 +77,4 @@ function connectHardware() {
 function simulate(){
     console.info('Hardware %s sensor started', pluginName);
 };
+
