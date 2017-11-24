@@ -2,11 +2,11 @@ var httpServer = require('./servers/http'),
     resources = require('./resources/model'),
     actuators = require('./routes/actuators'),
     request = require('request'),
-    var converter = require('@q42philips/hue-color-converter');
+    converter = require('@q42philips/hue-color-converter');
 
-    bluetoothPlugin = require('./plugins/internal/bluetoothPlugin.js');
-    ourRequest = require('./communication/request.js');
-    lights = require('./plugins/internal/lights.js');
+var bluetoothPlugin = require('./plugins/internal/bluetoothPlugin.js');
+var ourRequest = require('./communication/request.js');
+var lights = require('./plugins/internal/lights.js');
 
 var server = httpServer.listen(resources.pi.port, function () {
     console.info('Your WoT Pi is up and running on port %s',
