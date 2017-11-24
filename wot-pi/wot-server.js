@@ -22,9 +22,9 @@ exports.newUser = function(mac){
 
 };
 
-bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
+bluetoothPlugin.start({'simulate': false, 'frequency': 2000});
 lights.start({'simulate': false, 'frequency': 2000});
 
 ourRequest.getUsers();
-//onOffLight('http://192.168.0.108/api/zwxLWe5QUN6m3R0F92GoSOdT6rvq0cPw6THRxfJA/lights/1/state',true);
+
 
