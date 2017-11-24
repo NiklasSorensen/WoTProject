@@ -4,6 +4,7 @@
   "description": "",
   "main": "wot-server.js",
   "dependencies": {
+    "@q42philips/hue-color-converter": "^1.0.0",
     "bluetooth-hci-socket": "^0.5.1",
     "cors": "^2.8.4",
     "express": "^4.16.2",
