@@ -60,7 +60,7 @@ exports.newUser = function(mac){
 
 };
 
-bluetoothPlugin.start({'simulate': false, 'frequency': 2000});
+bluetoothPlugin.start({'simulate': true, 'frequency': 2000});
 lights.start({'simulate': false, 'frequency': 2000});
 
 ourRequest.getUsers();

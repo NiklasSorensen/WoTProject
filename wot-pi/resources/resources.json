@@ -35,7 +35,11 @@
                     "modelid": "LLC010",
                     "manufacturername": "Philips",
                     "uniqueid": "00:17:88:01:00:10:aa:17-0b",
-                    "swversion": "5.23.1.13452"
+                    "swversion": "5.23.1.13452",
+                    "functions": {
+                        "blink": "The light will blink, by turning down brightness followed by the brightness being turned up",
+                        "adjustBrightness": "Will adjust the brightness"
+                    }
                 }  
             }
         }
