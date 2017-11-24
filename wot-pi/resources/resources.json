@@ -1,5 +1,6 @@
 {
     "pi":{
+        "id": "http://localhost:8484",
         "name": "WoT Pi",
         "description": "WoT-Connected Raspberry PI for the project",
         "port": 8484,
@@ -16,7 +17,7 @@
             "lights": {
                 "1": {
                     "state": {
-                        "on": false,
+                        "on": true,
                         "bri": 254,
                         "hue": 0,
                         "sat": 0,
