@@ -45,9 +45,8 @@ router.route('/lights/:id/functions/changeColor').get(function(req, res, next){
   next();
 }).put(function(req, res, next){
   hex = req.body.hex;
-  var color;
+  var color = utils.rgbToXy(hex);
   var xy = model.lights[req.params.id].state;
-  color = utils.rgbToXy(hex);
 
   xy.xy = color;
 
