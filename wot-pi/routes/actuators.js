@@ -38,10 +38,10 @@ router.route('/lights/:id/functions/onoff').get(function (req, res, next){
     var color = utils.rgbToXy(hex);
     myLed.xy = color;
   }
-  if(req.body.brightness !== null){
+ // if(req.body.brightness !== null){
     bri = req.body.brightness;
     myLed.bri = bri;
-  }
+  //}
   myLed.on = req.body.on;
   console.info('changing light state on/off');
   //TODO fix cannot pull svar
