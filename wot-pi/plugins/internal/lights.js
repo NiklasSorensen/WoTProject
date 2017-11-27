@@ -14,7 +14,6 @@ exports.start = function (params) {
     localParams = params;
     watchjs.watch(model[1].state, ["on","xy"], function(){switchOnOff(model[1].state.on,model[1].state.xy);});
     watchjs.watch(model[1].state, "bri", function(){adjustBrightness(model[1].state.bri);});
-    //watchjs.watch(model[1].state, "xy", function(){switchOnOff(model[1].state.on,model[1].state.xy);});
     if(localParams.simulate){
         simulate();
     }else{
