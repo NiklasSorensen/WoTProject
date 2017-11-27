@@ -8,7 +8,7 @@ exports.isHome = function(state, macAddress){
         url+'/isUserHome', {
           json: {
           state: state,
-          user: macAddress
+          macAddress: macAddress
           }
         },
         function(error,response,body){
