@@ -74,6 +74,7 @@ router.route('/lights/:id/functions/blink').get(function (req, res, next){
   var myLed = model.lights[req.params.id].state;
   var wasOn = true;
   var previousBri = myLed.bri;
+  var previousColor = myLed.xy;
   if(myLed.on == false){
     myLed.on = true
     wasOn = false
@@ -92,6 +93,7 @@ router.route('/lights/:id/functions/blink').get(function (req, res, next){
     setTimeout(function(){myLed.on = false}, 1000*number);
   }
   setTimeout(function(){myLed.bri = previousBri}, 1000*number);
+  setTimeout(function(){myLed.xy = previousColor}, 1000*number);
   req.result = myLed.on;
   next();
 });
