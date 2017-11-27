@@ -1,10 +1,11 @@
 var request = require('request');
     internalComms = require('./InternalCommunications.js');
+    url = 'https://e1b20ff1.ngrok.io';    
 
 exports.isHome = function(state, macAddress){
     console.log('sending state to server');
     request.put(
-        'https://dd6da80a.ngrok.io/isUserHome', {
+        url+'/isUserHome', {
           json: {
           state: state,
           user: macAddress
@@ -21,7 +22,7 @@ exports.isHome = function(state, macAddress){
 exports.getUsers = function(){
     console.log('getting users');
     request.get(
-        'https://dd6da80a.ngrok.io/bluetoothdata', {
+        url+'/bluetoothdata', {
         },
         function(error,response,body){
             if(!error && response.statusCode == 200){
