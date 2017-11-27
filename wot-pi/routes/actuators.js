@@ -67,9 +67,11 @@ router.route('/lights/:id/functions/blink').get(function (req, res, next){
   req.result = model.lights[req.params.id].functions.blink;
   next();
 }).put(function (req, res, next){
+  console.info('blink is called');
   number = req.body.number;
   var myLed = model.lights[req.params.id].state;
   var wasOn = true;
+  var previousBri = myLed.bri;
   if(myLed.on == false){
     myLed.on = true
     wasOn = false
@@ -87,6 +89,7 @@ router.route('/lights/:id/functions/blink').get(function (req, res, next){
   if(!wasOn){
     setTimeout(function(){myLed.on = false}, 1000*number);
   }
+  setTimeout(function(){myLed.bri = previousBri}, 1000*number);
   req.result = myLed.on;
   next();
 });
