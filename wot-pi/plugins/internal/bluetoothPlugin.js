@@ -6,7 +6,7 @@ var resources = require('./../../resources/model'),
 	communication = require('./../../communication/request.js');
 
 
-var timeToWaitBeforeFalse = 30;
+var timeToWaitBeforeFalse = 10;
 
 exports.start = function (params) {
     localParams = params;
