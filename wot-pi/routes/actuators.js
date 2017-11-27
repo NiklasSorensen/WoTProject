@@ -32,6 +32,8 @@ router.route('/lights/:id/functions/onoff').get(function (req, res, next){
   req.result = model.lights[req.params.id].state;
   next();
 }).put(function (req, res, next){
+  console.info('onoff body');
+  console.info(req.body);
   var myLed = model.lights[req.params.id].state;
   if(req.body.hex !== null){
     hex = req.body.hex;
