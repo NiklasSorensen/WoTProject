@@ -32,7 +32,7 @@ var userArray = [];
 
 
 //Gem en brugerliste, med macAddress
-exports.saveMacAndColorPref = function(userList){
+exports.saveMacAddress = function(userList){
   userArray=[];
 //hent userlist fra resource fil
   for(i=0;i<userList.length;i++){

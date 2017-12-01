@@ -13,6 +13,6 @@ exports.newUser = function(mac){
         console.log(array[i]);
     }
       
-    bluetoothPlugin.saveMacAndColorPref(data.users);
+    bluetoothPlugin.saveMacAddress(data.users);
     
 };
