@@ -39,7 +39,8 @@
                     "functions": {
                         "onoff": "Turns the light on or off",
                         "blink": "The light will blink, by turning down brightness followed by the brightness being turned up",
-                        "adjustBrightness": "Will adjust the brightness"
+                        "adjustBrightness": "Will adjust the brightness",
+                        "changeColor": "This will change the color, based on a hex value"
                     }
                 }  
             }
